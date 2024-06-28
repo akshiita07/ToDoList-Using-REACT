@@ -2,14 +2,16 @@ import React, { useState } from "react";
 
 function TodoItem(props) {
   // when i click on any li it must strike out
-  const [isDone, changeStrike] = useState(false);
+  const [isDone, changeStrike] = useState([false]);
 
-  function listClick() {
-    console.log("List item got clicked!");
+  function listClick(id) {
+    console.log(`List item at ${id} got clicked!`);
 
     // strike must now be opposite of isDone
     changeStrike((prevValue) => {
-      return !prevValue;
+      const newArr = [...prevValue];
+      newArr[id] = !newArr[id];
+      return newArr;
     });
   }
 
@@ -20,10 +22,14 @@ function TodoItem(props) {
     textDecoration: "none",
   };
 
-  function iterateArray(item) {
+  function iterateArray(item, index) {
     // The <ul> should display all the array items as <li>s
     return (
-      <li onClick={listClick} style={isDone ? strike : unstrike}>
+      <li
+        key={index}
+        onClick={() => listClick(index)}
+        style={isDone[index] ? strike : unstrike}
+      >
         {item}
       </li>
     );
