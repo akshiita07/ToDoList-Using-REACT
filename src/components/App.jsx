@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TodoItem from "./TodoItem";
+import Input from "./Input";
 
 function App() {
   const [todo, newToDo] = useState("");
@@ -38,18 +39,12 @@ function App() {
       <div className="heading">
         <h1>To-Do List</h1>
       </div>
-      <div className="form" onSubmit={fsubmit}>
-        <input
-          onChange={iChange}
-          type="text"
-          autoFocus
-          autoComplete="off"
-          value={todo}
-        />
-        <button onClick={bclick} type="submit">
-          <span>Add</span>
-        </button>
-      </div>
+      <Input
+        inp={todo}
+        iChangeFnc={iChange}
+        bclickFnc={bclick}
+        fsubmitFnc={fsubmit}
+      />
       <div>
         <ul>
           <TodoItem array={arrayItems} onCheck={deleteItem} />
