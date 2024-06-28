@@ -22,6 +22,17 @@ function App() {
     event.preventDefault();
   }
 
+  function deleteItem(id) {
+    console.log(`List item: ${id} got clicked for delete!`);
+    setItem((prevValue) => {
+      // delete item with specific index
+      // use filter fnc to create new array & keep items that return true
+      return prevValue.filter(function (item, index) {
+        return index !== id;
+      });
+    });
+  }
+
   return (
     <div className="container">
       <div className="heading">
@@ -41,7 +52,7 @@ function App() {
       </div>
       <div>
         <ul>
-          <TodoItem array={arrayItems} />
+          <TodoItem array={arrayItems} onCheck={deleteItem} />
         </ul>
       </div>
     </div>
