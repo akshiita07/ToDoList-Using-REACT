@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TodoItem from "./TodoItem";
 
 function App() {
   const [todo, newToDo] = useState("");
@@ -21,11 +22,6 @@ function App() {
     event.preventDefault();
   }
 
-  function iterateArray(item) {
-    // The <ul> should display all the array items as <li>s
-    return <li>{item}</li>;
-  }
-
   return (
     <div className="container">
       <div className="heading">
@@ -45,8 +41,7 @@ function App() {
       </div>
       <div>
         <ul>
-          {/* all items in array as li */}
-          {arrayItems.map(iterateArray)}
+          <TodoItem array={arrayItems} />
         </ul>
       </div>
     </div>
